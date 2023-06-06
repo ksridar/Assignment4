@@ -110,7 +110,7 @@ button:hover {
     z-index: 999;
   }
   
-  .popup-content {
+  .popupContent {
     background-color: white;
     padding: 20px;
     border-radius: 5px;
@@ -118,15 +118,15 @@ button:hover {
     width: 80%;
   }
   
-  .popup-content h2 {
+  .popupContent h2 {
     margin-top: 0;
   }
   
-  .popup-content p {
+  .popupContent p {
     margin-bottom: 10px;
   }
   
-  .popup-content button {
+  .popupContent button {
     margin-top: 10px;
   }
   
