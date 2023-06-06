@@ -30,8 +30,8 @@ function DetailedView() {
     <>
       {items.map((item, index) => (
         <div key={index} className="card" onClick={() => openPopup(item)}>
-          <img src={item.image} alt={item.name} className="card-image" />
-          <div className="card-content">
+          <img src={item.image} alt={item.name} className="cardImage" />
+          <div className="cardContent">
             <h5>{item.name}</h5>
           </div>
         </div>
@@ -39,8 +39,8 @@ function DetailedView() {
 
       {selectedItem && (
         <div className="popup">
-          <div className="popup-content">
-            <img src={selectedItem.image} className="card-image" />
+          <div className="popupContent">
+            <img src={selectedItem.image} className="cardImage" />
             <form onSubmit={handleEdit}>
               <h2>{selectedItem.name}</h2>
               <div className="input">
@@ -63,7 +63,7 @@ function DetailedView() {
                 <button type="submit">Save</button>
               </div>
             </form>
-            <button className="close-button" onClick={closePopup}>
+            <button className="closeButton" onClick={closePopup}>
               Close
             </button>
           </div>
