@@ -37,7 +37,7 @@ function Home() {
       image,
     };
     dispatch(addItem(item));
-    document.getElementById('form').reset();
+    //document.getElementById('form').reset();
   };
 
   const handleClear = (event) => {
