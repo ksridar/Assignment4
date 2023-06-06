@@ -97,8 +97,6 @@ button:hover {
     margin: 10px;
 }
 
-/* Add the following CSS at the end of the existing CSS file */
-
 .popup {
     position: fixed;
     top: 0;
