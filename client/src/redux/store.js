@@ -1,14 +1,12 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 
-// Action types
 const ADD_ITEM = 'ADD_ITEM';
 const DELETE_ALL = 'DELETE_ALL';
 const SET_ITEMS = 'SET_ITEMS';
 const EDIT_ITEM = 'EDIT_ITEM';
 const DELETE_ITEM = 'DELETE_ITEM';
 
-// Action creators
 export const addItem = (item) => ({
   type: ADD_ITEM,
   payload: item,
@@ -33,7 +31,6 @@ export const deleteItem = (itemId) => ({
   payload: itemId,
 });
 
-// Thunk action creator for fetching items from the server
 export const fetchItems = () => {
   return (dispatch) => {
     return fetch('http://localhost:3001/items')
@@ -43,7 +40,6 @@ export const fetchItems = () => {
   };
 };
 
-// Thunk action creator for adding an item
 export const addItemAsync = (item) => {
   return (dispatch) => {
     return fetch('http://localhost:3001/items', {
@@ -59,7 +55,6 @@ export const addItemAsync = (item) => {
   };
 };
 
-// Thunk action creator for editing an item
 export const editItemAsync = (item) => {
   return (dispatch) => {
     return fetch(`http://localhost:3001/items/${item.id}`, {
@@ -72,7 +67,7 @@ export const editItemAsync = (item) => {
       .then((response) => response.json())
       .then(() => {
         dispatch(editItem(item));
-        return Promise.resolve(); // Resolve the Promise after dispatching the action
+        return Promise.resolve();
       })
       .catch((error) => console.log(error));
   };
@@ -93,7 +88,6 @@ export const deleteAllAsync = () => {
 };
 
 
-// Thunk action creator for deleting an item
 export const deleteItemAsync = (itemId) => {
   return (dispatch) => {
     return fetch(`http://localhost:3001/items/${itemId}`, {

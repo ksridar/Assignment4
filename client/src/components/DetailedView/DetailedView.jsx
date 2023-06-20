@@ -24,10 +24,12 @@ function DetailedView() {
     };
     dispatch(editItemAsync(editedItem));
     setSelectedItem(editedItem);
+    window.location.reload();
   };
 
   const handleDelete = (itemId) => {
     dispatch(deleteItemAsync(itemId));
+    window.location.reload();
   };
 
   return (
@@ -65,7 +67,6 @@ function DetailedView() {
               </div>
               <div className="buttons">
                 <button type="submit">Save</button>
-              
               </div>
             </form>
             <button className="closeButton" onClick={closePopup}>
