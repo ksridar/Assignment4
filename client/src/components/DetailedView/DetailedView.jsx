@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { editItem } from '../../redux/store.js';
+import { deleteItemAsync, editItemAsync } from '../../redux/store.js';
 
 function DetailedView() {
   const items = useSelector((state) => state.items);
@@ -22,8 +22,12 @@ function DetailedView() {
       description: event.target.elements.editDescription.value,
       price: event.target.elements.editPrice.value,
     };
-    dispatch(editItem(editedItem));
+    dispatch(editItemAsync(editedItem));
     setSelectedItem(editedItem);
+  };
+
+  const handleDelete = (itemId) => {
+    dispatch(deleteItemAsync(itemId));
   };
 
   return (
@@ -61,11 +65,13 @@ function DetailedView() {
               </div>
               <div className="buttons">
                 <button type="submit">Save</button>
+              
               </div>
             </form>
             <button className="closeButton" onClick={closePopup}>
               Close
             </button>
+            <button onClick={() => handleDelete(selectedItem.id)}>Delete</button>
           </div>
         </div>
       )}

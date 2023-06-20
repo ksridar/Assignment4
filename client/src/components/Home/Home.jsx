@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addItem, deleteAll, setItems } from '../../redux/store.js';
+import { addItemAsync, deleteAllAsync, setItemsAsync } from '../../redux/store.js';
 import DetailedView from '../DetailedView/DetailedView.jsx';
 
 import './Home.css';
@@ -10,17 +10,9 @@ function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(
-      setItems([
-        {
-          name: 'Dog',
-          description: 'Black Labrador',
-          price: '$500',
-          image:
-            'https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U',
-        },
-      ])
-    );
+    fetch('http://localhost:3001/items')
+      .then((response) => response.json())
+      .catch((error) => console.log(error));
   }, [dispatch]);
 
   const handleSubmit = (event) => {
@@ -36,7 +28,7 @@ function Home() {
       price,
       image,
     };
-    dispatch(addItem(item));
+    dispatch(addItemAsync(item));
     //document.getElementById('form').reset();
   };
 
@@ -47,7 +39,7 @@ function Home() {
 
   const handleDeleteAll = (event) => {
     event.preventDefault();
-    dispatch(deleteAll());
+    dispatch(deleteAllAsync());
   };
 
   return (
