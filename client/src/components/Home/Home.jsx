@@ -12,6 +12,7 @@ function Home() {
   useEffect(() => {
     fetch('http://localhost:3001/items')
       .then((response) => response.json())
+      .then((data) => dispatch(setItemsAsync(data)))
       .catch((error) => console.log(error));
   }, [dispatch]);
 
@@ -21,14 +22,17 @@ function Home() {
     const description = document.getElementById('description').value;
     const price = document.getElementById('price').value;
     const image = document.getElementById('image').value;
+    const location = document.getElementById('location').value;
 
     const item = {
       name,
       description,
       price,
       image,
+      location,
     };
     dispatch(addItemAsync(item));
+    window.location.reload();
     //document.getElementById('form').reset();
   };
 
@@ -40,6 +44,7 @@ function Home() {
   const handleDeleteAll = (event) => {
     event.preventDefault();
     dispatch(deleteAllAsync());
+    window.location.reload();
   };
 
   return (
@@ -63,6 +68,10 @@ function Home() {
             <div className="input">
               <label htmlFor="price">Price</label>
               <input id="price" type="text" />
+            </div>
+            <div className="input">
+              <label htmlFor="location">Location</label>
+              <input id="location" type="text" />
             </div>
             <div className="input">
               <label htmlFor="image">Image</label>

@@ -32,10 +32,14 @@ export const deleteItem = (itemId) => ({
 });
 
 export const fetchItems = () => {
+  console.log("called fetch")
   return (dispatch) => {
     return fetch('http://localhost:3001/items')
       .then((response) => response.json())
-      .then((data) => dispatch(setItems(data)))
+      .then((data) => {
+        dispatch(setItems(data));
+        console.log(data);
+      })
       .catch((error) => console.log(error));
   };
 };
@@ -50,21 +54,22 @@ export const addItemAsync = (item) => {
       body: JSON.stringify(item),
     })
       .then((response) => response.json())
-      .then((data) => dispatch(addItem(data)))
+      .then((data) => {
+        dispatch(addItem(data));
+      })
       .catch((error) => console.log(error));
   };
 };
 
 export const editItemAsync = (item) => {
   return (dispatch) => {
-    return fetch(`http://localhost:3001/items/${item.id}`, {
+    return fetch(`http://localhost:3001/items/${item._id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(item),
     })
-      .then((response) => response.json())
       .then(() => {
         dispatch(editItem(item));
         return Promise.resolve();
@@ -87,14 +92,21 @@ export const deleteAllAsync = () => {
   };
 };
 
-
 export const deleteItemAsync = (itemId) => {
   return (dispatch) => {
     return fetch(`http://localhost:3001/items/${itemId}`, {
       method: 'DELETE',
     })
-      .then((response) => response.json())
       .then(() => dispatch(deleteItem(itemId)))
+      .catch((error) => console.log(error));
+  };
+};
+
+export const setItemsAsync = () => {
+  return (dispatch) => {
+    return fetch('http://localhost:3001/items')
+      .then((response) => response.json())
+      .then((data) => dispatch(setItems(data)))
       .catch((error) => console.log(error));
   };
 };
@@ -113,10 +125,10 @@ const itemsReducer = (state = initialState.items, action) => {
       return action.payload;
     case EDIT_ITEM:
       return state.map((item) =>
-        item.id === action.payload.id ? action.payload : item
+        item._id === action.payload._id ? action.payload : item
       );
     case DELETE_ITEM:
-      return state.filter((item) => item.id !== action.payload);
+      return state.filter((item) => item._id !== action.payload);
     default:
       return state;
   }
@@ -128,5 +140,12 @@ const rootReducer = combineReducers({
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 store.dispatch(fetchItems());
+
+store.subscribe(() => {
+  if (store.getState().items.length === 0) {
+    store.dispatch(fetchItems());
+  }
+});
+
 
 export default store;

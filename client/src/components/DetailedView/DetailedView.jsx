@@ -21,14 +21,17 @@ function DetailedView() {
       ...selectedItem,
       description: event.target.elements.editDescription.value,
       price: event.target.elements.editPrice.value,
+      location: event.target.elements.editLocation.value,
     };
-    dispatch(editItemAsync(editedItem));
-    setSelectedItem(editedItem);
-    window.location.reload();
+    dispatch(editItemAsync(editedItem))
+      .then(() => setSelectedItem(editedItem))
+      .catch((error) => console.log(error));
   };
 
-  const handleDelete = (itemId) => {
-    dispatch(deleteItemAsync(itemId));
+  const handleDelete = (id) => {
+    dispatch(deleteItemAsync(id))
+      .then(() => window.location.reload())
+      .catch((error) => console.log(error));
     window.location.reload();
   };
 
@@ -65,6 +68,14 @@ function DetailedView() {
                   defaultValue={selectedItem.price}
                 />
               </div>
+              <div className="input">
+                <label htmlFor="editLocation">Location</label>
+                <input
+                 id="editLocation"
+                 type="text"
+                 defaultValue={selectedItem.location}
+                />
+              </div>
               <div className="buttons">
                 <button type="submit">Save</button>
               </div>
@@ -72,7 +83,7 @@ function DetailedView() {
             <button className="closeButton" onClick={closePopup}>
               Close
             </button>
-            <button onClick={() => handleDelete(selectedItem.id)}>Delete</button>
+            <button onClick={() => handleDelete(selectedItem._id)}>Delete</button>
           </div>
         </div>
       )}
