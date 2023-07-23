@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const { MongoClient, ObjectId } = require('mongodb');
+require('dotenv').config();
 
 const app = express();
 const port = 3001;
@@ -9,7 +10,7 @@ const port = 3001;
 app.use(bodyParser.json());
 app.use(cors());
 
-const uri = 'mongodb+srv://ksridar:Kittumani22!@assignmentcluster.68qrzri.mongodb.net/assignmentcluster?retryWrites=true&w=majority';
+const uri = process.env.MONGODB_URI;
 
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
