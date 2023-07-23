@@ -1,8 +1,8 @@
 {
-    "name": "mern-deploy",
+    "name": "Assignment5",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js",
+    "main": "server.js",
     "scripts": {
       "install-server": "cd backend && npm install",
       "start-server": "cd backend && node app.js",
