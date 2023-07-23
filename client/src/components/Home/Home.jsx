@@ -10,7 +10,7 @@ function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetch('http://localhost:3001/items')
+    fetch('https://assignment-5-c1oy.onrender.com/items')
       .then((response) => response.json())
       .then((data) => dispatch(setItemsAsync(data)))
       .catch((error) => console.log(error));

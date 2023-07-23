@@ -34,7 +34,7 @@ export const deleteItem = (itemId) => ({
 export const fetchItems = () => {
   console.log("called fetch")
   return (dispatch) => {
-    return fetch('http://localhost:3001/items')
+    return fetch('https://assignment-5-c1oy.onrender.com/items')
       .then((response) => response.json())
       .then((data) => {
         dispatch(setItems(data));
@@ -46,7 +46,7 @@ export const fetchItems = () => {
 
 export const addItemAsync = (item) => {
   return (dispatch) => {
-    return fetch('http://localhost:3001/items', {
+    return fetch('https://assignment-5-c1oy.onrender.com/items', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -63,7 +63,7 @@ export const addItemAsync = (item) => {
 
 export const editItemAsync = (item) => {
   return (dispatch) => {
-    return fetch(`http://localhost:3001/items/${item._id}`, {
+    return fetch(`https://assignment-5-c1oy.onrender.com/items/${item._id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -80,7 +80,7 @@ export const editItemAsync = (item) => {
 
 export const deleteAllAsync = () => {
   return (dispatch) => {
-    return fetch('http://localhost:3001/items', {
+    return fetch('https://assignment-5-c1oy.onrender.com/items', {
       method: 'DELETE',
     })
       .then((response) => {
@@ -94,7 +94,7 @@ export const deleteAllAsync = () => {
 
 export const deleteItemAsync = (itemId) => {
   return (dispatch) => {
-    return fetch(`http://localhost:3001/items/${itemId}`, {
+    return fetch(`https://assignment-5-c1oy.onrender.com/items/${itemId}`, {
       method: 'DELETE',
     })
       .then(() => dispatch(deleteItem(itemId)))
@@ -104,7 +104,7 @@ export const deleteItemAsync = (itemId) => {
 
 export const setItemsAsync = () => {
   return (dispatch) => {
-    return fetch('http://localhost:3001/items')
+    return fetch('https://assignment-5-c1oy.onrender.com/items')
       .then((response) => response.json())
       .then((data) => dispatch(setItems(data)))
       .catch((error) => console.log(error));

@@ -13,6 +13,7 @@ function DetailedView() {
 
   const closePopup = () => {
     setSelectedItem(null);
+    window.location.reload();
   };
 
   const handleEdit = (event) => {
