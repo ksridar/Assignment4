@@ -1,16 +1,24 @@
 {
-    "name": "assignment5",
-    "version": "1.0.0",
-    "description": "",
-    "main": "server.js",
-    "scripts": {
-      "install-server": "cd backend && npm install",
-      "start-server": "cd backend && node app.js",
-      "install-client": "cd client && npm install",
-      "build-client": "cd client && npm run build",
-      "start-client": "cd client && npm run start"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC"
-  }
+  "name": "assignment2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "mongodb": "^5.7.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ksridar/Assignment2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ksridar/Assignment2/issues"
+  },
+  "homepage": "https://github.com/ksridar/Assignment2#readme"
+}
