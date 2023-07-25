@@ -28,5 +28,4 @@ jobs:
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}  # Set your MongoDB URI as a GitHub secret
         run: |
-          npm run build  #
-          npm start & sleep 5  #
+          npm run start & sleep 5  #
