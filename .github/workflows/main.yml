@@ -23,9 +23,3 @@ jobs:
 
       - name: Run tests
         run: npx mocha test-server.js 
-
-      - name: Build and Deploy
-        env:
-          MONGODB_URI: ${{ secrets.MONGODB_URI }}  # Set your MongoDB URI as a GitHub secret
-        run: |
-          npm run start & sleep 5  #
