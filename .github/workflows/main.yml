@@ -1,0 +1,33 @@
+name: Node.js CI/CD
+
+on:
+  push:
+    branches:
+      - Assignment5  
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16.13.1'  # Change to the version you are using, if different
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npx mocha test-server.js
+
+      - name: Build and Deploy
+        env:
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}  # Set your MongoDB URI as a GitHub secret
+        run: |
+          npm run build  #
+          npm start & sleep 5  #
