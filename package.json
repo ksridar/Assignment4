@@ -6,7 +6,12 @@
   "dependencies": {
     "mongodb": "^5.7.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "jest": "^29.6.1",
+    "mocha": "^10.2.0",
+    "supertest": "^6.3.3"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "install-server": "cd server && npm install",
@@ -27,5 +32,3 @@
   },
   "homepage": "https://github.com/ksridar/Assignment2#readme"
 }
-
-
